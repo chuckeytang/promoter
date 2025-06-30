@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_ai"
+        android:title="AI"/>
+    <item android:id="@+id/nav_tasks"
+        android:title="任务"/>
+    <item android:id="@+id/nav_functions"
+        android:title="功能"/>
+    <item android:id="@+id/nav_effects"
+        android:title="效果"/>
+    <item android:id="@+id/nav_me"
+        android:title="我的"/>
+</menu>
