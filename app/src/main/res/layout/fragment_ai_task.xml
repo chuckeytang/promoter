@@ -18,6 +18,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <Button
+            android:id="@+id/wechat_click_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信点击"
+            android:layout_marginEnd="8dp"/>
+
         <ImageView
             android:id="@+id/mic_button"
             android:layout_width="wrap_content"
