@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.promotor.network"
+    namespace = "com.haomai.promotor.network"
     compileSdk = 35
 
     defaultConfig {

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.promotor.accessibility"
+    namespace = "com.haomai.promotor.accessibility"
     compileSdk = 35
 
     defaultConfig {

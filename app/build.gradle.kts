@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.promotor"
+    namespace = "com.haomai.promotor"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.promotor"
+        applicationId = "com.haomai.promotor"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
