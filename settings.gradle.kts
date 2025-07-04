@@ -21,3 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Promotor"
 include(":app")
+include(":feature_promotor")
+include(":core_accessibility")
+include(":core_network")
+include(":core_common")

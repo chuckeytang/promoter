@@ -7,9 +7,6 @@ plugins {
 android {
     namespace = "com.example.promotor"
     compileSdk = 35
-    buildFeatures {
-        viewBinding = true
-    }
 
     defaultConfig {
         applicationId = "com.example.promotor"
@@ -39,6 +36,7 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
 }
 
@@ -66,4 +64,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(project(":feature_promotor"))
+    implementation(project(":core_common"))
+    implementation(project(":core_network"))
+    implementation(project(":core_accessibility"))
 }

@@ -17,11 +17,11 @@ class MainActivity : AppCompatActivity() {
         // Set up the bottom navigation
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_ai -> replaceFragment(AITaskFragment())
-                R.id.nav_tasks -> replaceFragment(TasksFragment())
-                R.id.nav_functions -> replaceFragment(FunctionsFragment())
-                R.id.nav_effects -> replaceFragment(EffectsFragment())
-                R.id.nav_me -> replaceFragment(MeFragment())
+                R.id.nav_ai -> replaceFragment(com.example.promotor.feature.promotor.ui.AITaskFragment())
+                R.id.nav_tasks -> replaceFragment(com.example.promotor.feature.promotor.ui.TasksFragment())
+                R.id.nav_functions -> replaceFragment(com.example.promotor.feature.promotor.ui.FunctionsFragment())
+                R.id.nav_effects -> replaceFragment(com.example.promotor.feature.promotor.ui.EffectsFragment())
+                R.id.nav_me -> replaceFragment(com.example.promotor.feature.promotor.ui.MeFragment())
             }
             true
         }
