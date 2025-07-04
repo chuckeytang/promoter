@@ -12,6 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.promotor.accessibility.GestureService
+import com.example.promotor.accessibility.actions.ClickAction
+import com.example.promotor.common.launcher.AppLauncher
 import com.example.promotor.feature.promotor.databinding.FragmentAiTaskBinding
 
 class AITaskFragment : Fragment() {
@@ -50,23 +52,17 @@ class AITaskFragment : Fragment() {
     }
 
     private fun launchWeChatAndPerformClick() {
-        // Get the launch intent for WeChat
-        val launchIntent = requireContext().packageManager.getLaunchIntentForPackage(WECHAT_PACKAGE_NAME)
-        if (launchIntent == null) {
-            Toast.makeText(requireContext(), "未安装微信", Toast.LENGTH_SHORT).show()
-            return
+        // 1. Use the new AppLauncher utility
+        val launched = AppLauncher.launchByPackageName(requireContext(), WECHAT_PACKAGE_NAME)
+
+        if (launched) {
+            // Wait for WeChat to launch before clicking
+            Handler(Looper.getMainLooper()).postDelayed({
+                // 2. Use the new ClickAction class
+                val clickAction = ClickAction()
+                clickAction.performAtCenter()
+            }, 2000) // 2-second delay
         }
-
-        // Start WeChat
-        startActivity(launchIntent)
-
-        // IMPORTANT: We need to wait a moment for WeChat to launch and load its UI.
-        // A 2-second delay is a simple but potentially unreliable way to do this.
-        // A more robust solution would be to listen for WeChat window events in the service.
-        Handler(Looper.getMainLooper()).postDelayed({
-            // Call the click function on our service instance
-            GestureService.instance?.performCenterClick()
-        }, 2000) // 2000ms = 2 second delay
     }
 
     /**

@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.androidx.viewpager2)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.fragment.ktx)
+    implementation(project(":core_network"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
