@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -41,12 +42,19 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
     implementation(project(":core_common"))
     implementation(project(":core_network"))
     implementation(project(":core_accessibility"))
+    implementation(project(":core_aop"))
     implementation(libs.androidx.recyclerview)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    ksp(project(":core_aop"))
+    ksp("androidx.room:room-compiler:2.6.1")
 }

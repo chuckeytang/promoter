@@ -2,8 +2,14 @@ package com.haomai.promotor.accessibility
 
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.GestureDescription
+import android.graphics.Bitmap
 import android.graphics.Path
+import android.os.Build
+import android.view.Display
 import android.view.accessibility.AccessibilityEvent
+import androidx.annotation.RequiresApi
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
 
 class GestureService : AccessibilityService() {
 
@@ -85,5 +91,43 @@ class GestureService : AccessibilityService() {
         gestureBuilder.addStroke(GestureDescription.StrokeDescription(path, 0, duration))
 
         dispatchGesture(gestureBuilder.build(), null, null)
+    }
+
+    /**
+     * Captures the current screen content.
+     * This method is asynchronous and should be called from a coroutine.
+     * It requires Android R (API 30) or higher.
+     *
+     * @return A Bitmap of the screen capture, or null if it fails or is unsupported.
+     */
+    @RequiresApi(Build.VERSION_CODES.R)
+    suspend fun captureScreen(): Bitmap? {
+        // suspendCancellableCoroutine is a modern way to wrap callback-based APIs into suspend functions.
+        return suspendCancellableCoroutine { continuation ->
+            takeScreenshot(
+                Display.DEFAULT_DISPLAY,
+                mainExecutor, // An executor to run the callback on the main thread
+                object : TakeScreenshotCallback {
+                    override fun onSuccess(screenshot: ScreenshotResult) {
+                        // On success, resume the coroutine with the bitmap.
+                        // We need to copy to a software bitmap to make it usable/mutable.
+                        val bitmap = Bitmap.wrapHardwareBuffer(screenshot.hardwareBuffer, screenshot.colorSpace)
+                            ?.copy(Bitmap.Config.ARGB_8888, false)
+                        continuation.resume(bitmap)
+                    }
+
+                    override fun onFailure(errorCode: Int) {
+                        // On failure, print an error and resume with null.
+                        System.err.println("Screen capture failed with error code: $errorCode")
+                        continuation.resume(null)
+                    }
+                }
+            )
+
+            // If the coroutine is cancelled, there's nothing extra to do.
+            continuation.invokeOnCancellation { throwable ->
+                System.err.println("Screen capture was cancelled: ${throwable?.message}")
+            }
+        }
     }
 }

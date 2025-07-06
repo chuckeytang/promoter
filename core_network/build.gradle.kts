@@ -39,6 +39,12 @@ dependencies {
     implementation(libs.material)
 
     implementation(libs.socketio.client)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.converter.gson)
+
+    implementation(project(":core_common"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
