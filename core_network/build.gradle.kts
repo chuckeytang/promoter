@@ -45,6 +45,7 @@ dependencies {
     implementation(libs.retrofit.converter.gson)
 
     implementation(project(":core_common"))
+    implementation(project(":core_common_jvm"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

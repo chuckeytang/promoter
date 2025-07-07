@@ -20,10 +20,11 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Promotor"
+rootProject.name = "HaomaiPromotor"
 include(":app")
 include(":feature_promotor")
 include(":core_accessibility")
 include(":core_network")
 include(":core_common")
 include(":core_aop")
+include(":core_common_jvm")

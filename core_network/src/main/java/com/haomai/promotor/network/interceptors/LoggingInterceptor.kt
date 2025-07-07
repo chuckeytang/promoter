@@ -1,9 +1,10 @@
 package com.haomai.promotor.network.interceptors
 
+import com.haomai.promotor.common.utils.AndroidLogger
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
-import com.haomai.promotor.common.utils.Logger
+import com.haomai.promotor.common_jvm.utils.Logger
 
 /**
  * A custom logging interceptor for OkHttp.
@@ -12,17 +13,18 @@ import com.haomai.promotor.common.utils.Logger
  */
 class LoggingInterceptor : Interceptor {
 
+    private val runtimeLogger: Logger = AndroidLogger() // 实例化 ConsoleLogger
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
 
         val startTime = System.nanoTime()
-        Logger.d("OkHttp-Request", "Sending request ${request.url} on ${chain.connection()}\n${request.headers}")
+        runtimeLogger.debug("OkHttp-Request", "Sending request ${request.url} on ${chain.connection()}\n${request.headers}")
 
         val response = chain.proceed(request)
 
         val endTime = System.nanoTime()
-        Logger.d("OkHttp-Response", "Received response for ${response.request.url} in ${(endTime - startTime) / 1e6}ms\n${response.headers}")
+        runtimeLogger.debug("OkHttp-Response", "Received response for ${response.request.url} in ${(endTime - startTime) / 1e6}ms\n${response.headers}")
 
         return response
     }

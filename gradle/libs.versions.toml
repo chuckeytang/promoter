@@ -1,6 +1,6 @@
 [versions]
 agp = "8.7.2"
-kotlin = "2.0.0"
+kotlin = "2.1.21"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -17,7 +17,7 @@ fragmentKtx = "1.7.1"
 appcompat = "1.7.0"
 socketioClient = "2.1.0"
 lifecycleViewmodelAndroid = "2.8.3"
-ksp = "2.0.0-1.0.21"
+ksp = "2.1.21-2.0.1"
 jetbrainsKotlinJvm = "2.0.0"
 okhttp = "4.12.0"
 retrofit = "2.9.0"
@@ -50,6 +50,7 @@ okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhtt
 okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+ksp-symbol-processing-api = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
